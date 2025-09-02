@@ -1,35 +1,38 @@
-"use client"
-
-import { motion } from "framer-motion"
-import Header from "@/components/layout/header"
-import MainContent from "@/components/layout/main-content"
-import PurchaseSection from "@/components/layout/purchase-section"
+import { Button } from "@/components/ui/button";
+import Header from "@/components/layout/header";
+import MockupGenerator from "@/components/MockupGenerator";
+import Footer from "@/components/layout/Footer"; // 1. Importar o Footer
+import { ShoppingCart } from "lucide-react";
 
 const Index = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-background flex flex-col relative overflow-hidden"
-    >
+    <div className="flex flex-col flex-1 bg-background">
+      {/* 1. Cima -> Logo e Nome */}
       <Header />
-      <MainContent />
-      <PurchaseSection />
+
+      {/* 2. Meio -> "experimente agora" */}
+      <MockupGenerator />
       
-      {/* Subtle background pattern */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 1 }}
-        className="absolute inset-0 -z-10"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--brand-text)) 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
-          opacity: 0.02
-        }}
-      />
-    </motion.div>
+      {/* 3. Baixo -> Botão de comprar */}
+      <section className="py-20 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-4 font-heading">
+            Gostou do resultado?
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Clique no botão abaixo para adicionar ao carrinho e finalizar sua compra.
+          </p>
+          {/* 2. Alterar a classe do botão */}
+          <Button size="lg" className="btn-brand text-lg px-8 py-4">
+            <ShoppingCart className="mr-2 h-5 w-5" />
+            Comprar Agora
+          </Button>
+        </div>
+      </section>
+
+      {/* 4. Adicionar o Footer no final da página */}
+      <Footer />
+    </div>
   );
 };
 
